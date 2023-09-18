@@ -26,6 +26,7 @@ struct GameState {
     acl: f32,
     gravity: f32,
     fuel: f32,
+    has_fuel: bool,
     power: i32,
     planet: Planet,
     game_status: GameStatus,
@@ -60,6 +61,7 @@ impl GameState {
             acl: 0.0,
             gravity: 2.5,
             fuel: 100.0,
+            has_fuel: true,
             power : 0,
             planet,
             game_status: GameStatus::Playing,
@@ -86,15 +88,15 @@ impl EventHandler for GameState {
 
             self.vel += gravity;
 
-            if self.power == 1 && self.fuel > 0.1 {
+            if self.power == 1 && self.fuel >= 0.1 {
                 self.acl = 1.0;
                 self.vel -= acl;
                 self.fuel -= 0.1;
-            } else if self.power == 2 && self.fuel > 0.3 {
+            } else if self.power == 2 && self.fuel >= 0.3 {
                 self.acl = 3.0;
                 self.vel -= acl;
                 self.fuel -= 0.3;
-            } else if self.power == 3 && self.fuel > 0.6 {
+            } else if self.power == 3 && self.fuel >= 0.6 {
                 self.acl = 6.0;
                 self.vel -= acl;
                 self.fuel -= 0.6;
@@ -116,10 +118,10 @@ impl EventHandler for GameState {
                 self.planet.size,
             );
 
-            if self.fuel <= 0.0 {
-                println!("You ran out of fuel! Game Over");
+            if self.fuel < 1.0 && self.has_fuel {
+                println!("You ran out of fuel!");
+                self.has_fuel = false;
                 self.power = 0;
-                self.game_status = GameStatus::GameOver;
             }
 
             if rocket_hitbox.overlaps(&planet_hitbox) {

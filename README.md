@@ -1,7 +1,7 @@
 # Rusty Rocketeer
 ![Static Badge](https://img.shields.io/badge/ggez-0.9.3-orange)
 
-In Rusty Rocketeer, the player needs to safely land a space vessel on a planet, taking in account the rocket velocity and fuel, aswell as the planet's gravity.
+In Rusty Rocketeer, the player needs to safely land a space vessel on a planet, taking in account the rocket velocity and fuel, as well as the planet's gravity.
 
 It was developed as the final project for Tópicos Especiais em Computação VII optative subject at Universidade Federal de Pelotas. The proposal was to develop a game in rust language, utilizing ggez library.
 

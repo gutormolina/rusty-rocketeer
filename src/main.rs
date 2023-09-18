@@ -125,7 +125,7 @@ impl EventHandler for GameState {
             if rocket_hitbox.overlaps(&planet_hitbox) {
                 if self.vel <= 2.0 {
                     self.vel = 0.0;
-                    println!("Landing successful! You win!");
+                    println!("Landing successful! You won!");
                     println!("Press R to play again!");
                     self.game_status = GameStatus::Win;
                 } else {
